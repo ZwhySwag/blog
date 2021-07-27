@@ -1,0 +1,166 @@
+body {
+	background: url("../images/background.png");
+}
+
+/* 间隔 */
+.m-padded-tb-mini {
+	padding-top: 0.2em !important;
+	padding-bottom: 0.2em !important;
+}
+
+.m-padded-tb-middle {
+	padding-top: 1em !important;
+	padding-bottom: 1em !important;
+}
+
+.m-padded-tb-large {
+	padding-top: 2em !important;
+	padding-bottom: 2em !important;
+}
+
+.m-padded-tb-max {
+	padding-top: 5em !important;
+	padding-bottom: 5em !important;
+}
+
+.m-padded-mini {
+	padding: 0.2em !important;
+}
+
+.m-padded-middle {
+	padding: 0.5em !important;
+}
+
+.m-padded-lr-middle {
+	padding-left: 4em !important;
+	padding-right: 4em !important;
+}
+
+.m-padded-lr-middle-responsive {
+	padding-left: 4em !important;
+	padding-right: 4em !important;
+}
+
+.m-margin-tb-tiny {
+	margin-top: 0.1em !important;
+	margin-bottom: 0.1em !important;
+}
+
+.m-margin-tb-mini {
+	margin-top: 0.3em !important;
+	margin-bottom: 0.3em !important;
+}
+
+.m-margin-tb-middle {
+	margin-top: 2em !important;
+	margin-bottom: 2em !important;
+}
+
+.m-margin-tb-large {
+	margin-top: 5em !important;
+	margin-bottom: 5em !important;
+}
+
+.m-margin-lr-middle {
+	margin-right: 3em !important;
+}
+
+.m-margin-bottom-mini {
+	margin-bottom: 0.5em !important;
+}
+
+/* 设置字体 */
+.m-text {
+	font-weight: 300 !important;
+	letter-spacing: 1px !important;
+	line-height: 1.8 !important;
+}
+
+.m-text-thin {
+	font-weight: 300 !important;
+}
+
+.m-text-spaced {
+	letter-spacing: 1px !important;
+}
+
+.m-text-lined {
+	line-height: 1.8 !important;
+}
+
+.m-opacity-mini {
+	opacity: 0.8 !important;
+}
+
+.m-opacity-middle {
+	opacity: 0.5 !important;
+}
+
+/* display */
+.m-inline-block {
+	display: inline-block !important;
+}
+
+.m-container {
+	max-width: 72em !important;
+	margin: auto !important;
+}
+
+.m-article-container {
+	max-width: 60em !important;
+	margin: auto !important;
+}
+
+.m-article-container-large {
+	max-width: 80em !important;
+	margin: auto !important;
+}
+
+/* 颜色 */
+.m-black-font {
+	color: #333 !important;
+}
+
+/* 位置 */
+.m-top-right-location {
+	position: absolute !important;
+	top: 15px  !important;
+	right: 0  !important;
+}
+
+.m-fixed-right-bottom {
+	position: fixed !important;
+	bottom: 0 !important;
+	right: 0 !important;
+	z-index: 1 !important;
+}
+
+/* 阴影 */
+.m-shadow-small {
+	-webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/* 手机端样式 */
+.m-mobile-show {
+	display: none !important;
+}
+
+
+/* 屏幕宽度小于768像素 */
+@media screen and (max-width: 768px) {
+	.m-mobile-hide {
+		display: none !important; 
+	}
+	.m-mobile-show {
+		display: block !important;
+	}
+	.m-padded-lr-middle {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+	.m-mobile-wide {
+		width: 100% !important;
+	}
+}
+

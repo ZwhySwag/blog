@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head th:replace="_fragments :: head(~{::title})">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>关于我</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+		<link rel="stylesheet" href="../static/css/me.css"/>
+	</head>
+	<body>
+		<!-- 导航 -->
+		<nav th:replace="_fragments :: menu(5)" class="ui inverted segment m-padded-tb-mini m-shadow-small">
+			<div class="ui container">
+				<div class="ui inverted secondary stackable menu">
+					<h2 class="ui teal header item">Blog</h2>
+					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="home icon"></i>首页</a>
+					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="idea icon"></i>分类</a>
+					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="tags icon"></i>标签</a>
+					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="clone icon"></i>归档</a>
+					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="info icon"></i>关于我</a>
+					<div class="right item mobile-mide-nava m-mobile-hide">
+						<div class="ui inverted icon transparent input">
+							<input type="text" placeholder="Search..." />
+							<i class="search icon"></i>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+			<a href="#" id="navigation-trigger" class="ui black icon button m-top-right-location m-mobile-show">
+				<i class="sidebar icon"></i>
+			</a>
+		</nav>
+		<!-- 中间内容 -->
+		<div class="m-article-container-large m-padded-tb-max">
+			<div class="ui container">
+				<div class="ui stackable grid">
+					<div class="eleven wide column">
+						<div class="ui segment">
+							<img src="https://picsum.photos/id/1012/800/600" alt="" class="ui rounded image">
+						</div>
+					</div>
+					<div class="five wide column">
+						<div class="ui top attached segment">
+							<div class="ui header">
+								关于我
+							</div>
+						</div>
+						<div class="ui attached segment">
+							<p class="m-text">ZWhySwag, 来自湖北武汉的一个独立开发者，也是一个终生学习者，希望结识更多志同道合的小伙伴一起成长~~~</p>
+							<p class="m-text">热爱编程、游戏和旅游，喜欢猫咪、苹果和香菜...</p>
+						</div>
+						<div class="ui attached segment">
+							<div class="ui orange basic label m-margin-tb-mini">
+								旅游
+							</div>
+							<div class="ui orange basic label m-margin-tb-mini">
+								喵咪
+							</div>
+							<div class="ui orange basic label m-margin-tb-mini">
+								吃货
+							</div>
+							<div class="ui orange basic label m-margin-tb-mini">
+								理财
+							</div>
+						</div>
+						<div class="ui attached segment">
+							<div class="ui teal basic left pointing label m-margin-tb-mini">
+								java
+							</div>
+							<div class="ui teal basic left pointing label m-margin-tb-mini">
+								javascript
+							</div>
+							<div class="ui teal basic left pointing label m-margin-tb-mini">
+								mysql
+							</div>
+							<div class="ui teal basic left pointing label m-margin-tb-mini">
+								python
+							</div>
+							<div class="ui teal basic left pointing label m-margin-tb-mini">
+								shell
+							</div>
+							<div class="ui teal basic left pointing label m-margin-tb-mini">
+								go
+							</div>
+						</div>
+						<div class="ui bottom attached segment">
+							<a href="#" class="ui circular icon button"><i class="github icon large"></i></a>
+							<a href="#" id="weixin-msg" class="ui circular icon button"><i class="weixin icon large"></i></a>
+							<a href="#" id="qq-msg" class="ui circular icon button" data-content="QQ:564243845" data-position="bottom center">
+								<i class="qq icon large"></i>
+							</a>
+						</div>
+						<div id="weixin-action" class="ui flowing popup transition hidden">
+							<img src="https://picsum.photos/id/1010/250/250" alt="" class="ui rounded bordered image" style="width: 120px;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<br/>
+	<br/>
+		<!-- 底部 -->
+		<footer th:replace="_fragments :: footer()" class="ui inverted vertical segment m-padded-tb-max">
+			<div class="ui center aligned container">
+				<div class="ui inverted divided stackable grid">
+					<div class="three wide column">
+						<div class="ui inverted link list">
+							<div class="item">
+								<img src="https://picsum.photos/id/1010/3500/3500" class="ui rounded image" alt="" style="width: 110px">
+							</div>
+						</div>
+					</div>
+					<div class="three wide column">
+						<h4 class="ui inverted header m-text-thin m-text-spaced m-opacity-mini">最新博客</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">用户故事（user story）</a>
+							<a href="#" class="item">关于刻意联系的清单</a>
+							<a href="#" class="item">失败要趁早</a>
+						</div>
+					</div>
+					<div class="four wide column">
+						<h4 class="ui inverted header m-text-thin m-text-spaced m-opacity-mini">联系我</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">Email: 18154461317@163.com</a>
+							<a href="#" class="item">QQ: 564243845</a>
+						</div>
+					</div>
+					<div class="six wide column">
+						<h4 class="ui inverted header m-text-thin m-text-spaced m-opacity-mini">寄语</h4>
+						<p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助</p>
+					</div>
+				</div>
+				<div class="ui inverted section divider">
+					
+				</div>
+				<p class="m-text-thin m-text-spaced m-opacity-middle">Copyright©2020-2021 ZWhySwag Design by ZWhySwag</p>
+			</div>
+		</footer>
+		
+		<!-- 以CDN的方式引入jquery和semantic框架 -->
+		<!--/*/<th:block th:replace="_fragments :: script()">/*/-->
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+		<!--/*/</th:block>/*/-->
+
+		<script>
+			// 隐藏和展示导航栏信息
+			$("#navigation-trigger").click(function () {
+				$(".mobile-mide-nava").toggleClass("item m-mobile-hide");
+			});
+			// 打赏
+			$("#qq-msg").popup();
+			$("#weixin-msg").popup({
+				popup: $("#weixin-action"),
+				on: "hover",
+				position: "bottom center"
+			});
+		</script>
+	</body>
+</html>
