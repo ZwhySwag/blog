@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.server.mapper.BlogMapper">
+<mapper namespace="org.zwhy.swag.blog.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="org.zwhy.swag.blog.po.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
@@ -13,10 +13,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    *
-    from user
-    where id = #{id,jdbcType=BIGINT}
+  <select id="findByUsernameAndPassword" resultMap="BaseResultMap">
+    select * from user where username = #{username} and password = #{password}
   </select>
 </mapper>
