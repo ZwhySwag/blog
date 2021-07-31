@@ -5,12 +5,13 @@ spring:
     mode: HTML
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useAffectedRows=true
     username: root
     password: ZWhySwag#1
 
 mybatis:
   mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: org.zwhy.swag.blog.po
 
 logging:
   level:
