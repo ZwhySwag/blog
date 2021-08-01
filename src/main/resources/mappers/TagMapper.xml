@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.server.mapper.TagMapper">
+<mapper namespace="org.zwhy.swag.blog.mapper.TagMapper">
   <resultMap id="BaseResultMap" type="org.zwhy.swag.blog.po.Tag">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+
+  <insert id="saveTag" parameterType="org.zwhy.swag.blog.po.Tag">
+    insert into tag (name) values (#{name})
+  </insert>
+
+  <select id="getTagByName" resultType="org.zwhy.swag.blog.po.Tag">
+    select * from tag where name = #{name} and deleted = 0
+  </select>
+
+  <select id="getTag" parameterType="long" resultType="org.zwhy.swag.blog.po.Tag">
+    select * from tag where id = #{id} and deleted = 0
+  </select>
+
+  <select id="listTag" resultType="org.zwhy.swag.blog.po.Tag">
+    select * from tag where deleted = 0 order by id desc limit #{offset}, #{pageSize}
+  </select>
+
+  <select id="getTotalRecordCount" resultType="java.lang.Long">
+    select count(1) from tag where deleted = 0
+  </select>
+
+  <select id="getAllTag" resultType="org.zwhy.swag.blog.po.Tag">
+    select * from tag where deleted = 0 order by id desc
+  </select>
+
+  <update id="updateTag" parameterType="org.zwhy.swag.blog.po.Tag">
+    update tag set name = #{tag.name} where id = #{id} and deleted = 0
+  </update>
+
+  <update id="deleteTag">
+    update tag set deleted = 1 where id = #{id} and deleted = 0
+  </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 

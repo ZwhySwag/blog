@@ -1,5 +1,7 @@
 package org.zwhy.swag.blog.po;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,7 @@ public class Tag {
 
     private Long id;
 
+    @NotBlank(message = "标签名称不能为空...")
     private String name;
 
     private List<Blog> blogs;

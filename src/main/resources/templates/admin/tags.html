@@ -3,16 +3,16 @@
 	<head th:replace="admin/_fragments :: head(~{::title})">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>分类管理页面</title>
+		<title>标签管理页面</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 		<link rel="stylesheet" href="../../static/css/me.css"/>
 	</head>
 	<body>
 		<!-- 导航 -->
-		<nav th:replace="admin/_fragments :: menu(2)" class="ui inverted segment m-padded-tb-mini m-shadow-small">
+		<nav th:replace="admin/_fragments :: menu(3)" class="ui inverted segment m-padded-tb-mini m-shadow-small">
 			<div class="ui container">
 				<div class="ui inverted secondary stackable menu">
-					<h2 class="ui teal header item">博客管理后台</h2>
+					<h2 class="ui teal header item">标签管理页面</h2>
 					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="home icon"></i>博客</a>
 					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="idea icon"></i>分类</a>
 					<a href="#" class="mobile-mide-nava item m-mobile-hide"><i class="tags icon"></i>标签</a>
@@ -37,8 +37,8 @@
 		<div class="ui attached pointing menu">
 			<div class="ui container">
 				<div class="right menu">
-					<a href="#" th:href="@{/admin/type/input}" class="item">发布</a>
-					<a href="#" th:href="@{/admin/types}" class="active teal item">列表</a>
+					<a href="#" th:href="@{/admin/tag/input}" class="item">发布</a>
+					<a href="#" th:href="@{/admin/tags}" class="active teal item">列表</a>
 				</div>
 			</div>
 		</div>
@@ -64,22 +64,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="type, iterStat : ${page.list}">
+						<tr th:each="tag, iterStat : ${page.list}">
 							<td th:text="${iterStat}? ${iterStat.count}">1</td>
-							<td th:text="${type}? ${type.name}">技术</td>
+							<td th:text="${tag}? ${tag.name}">技术</td>
 							<td>
-								<a href="#" th:href="@{/admin/type/edit/{id}(id=${type.id})}" class="ui mini basic teal button">编辑</a>
-								<a href="#" th:href="@{/admin/type/delete/{id}(id=${type.id})}" class="ui mini basic red button">删除</a>
+								<a href="#" th:href="@{/admin/tag/edit/{id}(id=${tag.id})}" class="ui mini basic teal button">编辑</a>
+								<a href="#" th:href="@{/admin/tag/delete/{id}(id=${tag.id})}" class="ui mini basic red button">删除</a>
 							</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<th colspan="6">
 							<div class="ui mini pagination menu">
-								<a th:href="@{/admin/types(start=${page.pageNum-1})}" class="item">上一页</a>
-								<a th:href="@{/admin/types(start=${page.pageNum+1})}" class="item">下一页</a>
+								<a th:href="@{/admin/tags(start=${page.pageNum-1})}" class="item">上一页</a>
+								<a th:href="@{/admin/tags(start=${page.pageNum+1})}" class="item">下一页</a>
 							</div>
-							<a href="#" th:href="@{/admin/type/input}" class="ui right floated mini teal teal button">新增</a>
+							<a href="#" th:href="@{/admin/tag/input}" class="ui right floated mini teal teal button">新增</a>
 						</th>
 					</tfoot>
 				</table>
