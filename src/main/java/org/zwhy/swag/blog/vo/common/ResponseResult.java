@@ -1,4 +1,4 @@
-package org.zwhy.swag.blog.VO.common;
+package org.zwhy.swag.blog.vo.common;
 
 /**
  * @author ZWHySwag

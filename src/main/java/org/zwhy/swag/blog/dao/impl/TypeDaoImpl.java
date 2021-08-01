@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.zwhy.swag.blog.VO.common.Page;
 import org.zwhy.swag.blog.dao.TypeDao;
 import org.zwhy.swag.blog.mapper.TypeMapper;
 import org.zwhy.swag.blog.po.Type;
@@ -54,5 +53,10 @@ public class TypeDaoImpl implements TypeDao {
     @Override
     public Type getTypeByName(String name) {
         return typeMapper.getTypeByName(name);
+    }
+
+    @Override
+    public List<Type> listAllType() {
+        return typeMapper.getAllType();
     }
 }

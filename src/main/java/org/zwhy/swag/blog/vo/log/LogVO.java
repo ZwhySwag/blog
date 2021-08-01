@@ -1,4 +1,4 @@
-package org.zwhy.swag.blog.VO.log;
+package org.zwhy.swag.blog.vo.log;
 
 import java.util.Arrays;
 

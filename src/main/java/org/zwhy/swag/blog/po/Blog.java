@@ -41,6 +41,16 @@ public class Blog {
 
     private User user;
 
+    private Long typeId;
+
+    public Long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
+    }
+
     private List<Comment> comments;
 
     public List<Comment> getComments() {
@@ -178,6 +188,7 @@ public class Blog {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
 
     @Override
     public String toString() {

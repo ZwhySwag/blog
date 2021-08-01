@@ -1,7 +1,6 @@
 package org.zwhy.swag.blog.service;
 
 import com.github.pagehelper.PageInfo;
-import org.zwhy.swag.blog.VO.common.Page;
 import org.zwhy.swag.blog.po.Type;
 
 import java.util.List;
@@ -23,4 +22,6 @@ public interface TypeService {
     Boolean deleteType(Long id);
 
     Type getTypeByName(String name);
+
+    List<Type> listAllType();
 }

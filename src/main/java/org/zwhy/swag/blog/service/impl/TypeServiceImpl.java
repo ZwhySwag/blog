@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zwhy.swag.blog.VO.common.Page;
 import org.zwhy.swag.blog.dao.TypeDao;
 import org.zwhy.swag.blog.po.Type;
 import org.zwhy.swag.blog.service.TypeService;
@@ -56,5 +55,10 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type getTypeByName(String name) {
         return typeDao.getTypeByName(name);
+    }
+
+    @Override
+    public List<Type> listAllType() {
+        return typeDao.listAllType();
     }
 }

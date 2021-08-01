@@ -21,4 +21,6 @@ public interface TypeDao {
     Integer deleteType(Long id);
 
     Type getTypeByName(String name);
+
+    List<Type> listAllType();
 }

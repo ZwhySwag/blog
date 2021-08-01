@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zwhy.swag.blog.VO.common.ResponseResult;
+import org.zwhy.swag.blog.vo.common.ResponseResult;
 import org.zwhy.swag.blog.po.Tag;
 import org.zwhy.swag.blog.service.TagService;
 

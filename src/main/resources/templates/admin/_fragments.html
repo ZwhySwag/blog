@@ -23,8 +23,8 @@
                 <div class="right menu mobile-mide-nava item m-mobile-hide">
                     <div class="ui dropdown item">
                         <div class="text">
-                            <img class="ui avatar image" src="https://picsum.photos/id/167/2896/1944">
-                            ZWhySwag
+                            <img class="ui avatar image" src="https://picsum.photos/id/167/2896/1944" th:src="@{${session.user.avatar}}">
+                            <span th:text="${session.user.nickname}">ZWhySwag</span>
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">

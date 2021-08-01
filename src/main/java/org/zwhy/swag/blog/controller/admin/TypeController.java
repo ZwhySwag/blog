@@ -1,20 +1,17 @@
 package org.zwhy.swag.blog.controller.admin;
 
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zwhy.swag.blog.VO.common.Page;
-import org.zwhy.swag.blog.VO.common.ResponseResult;
+import org.zwhy.swag.blog.vo.common.ResponseResult;
 import org.zwhy.swag.blog.po.Type;
 import org.zwhy.swag.blog.service.TypeService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @author ZWHySwag

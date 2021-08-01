@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.zwhy.swag.blog.VO.log.LogVO;
+import org.zwhy.swag.blog.vo.log.LogVO;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.server.mapper.BlogMapper">
+<mapper namespace="org.zwhy.swag.blog.mapper.BlogMapper">
   <resultMap id="BaseResultMap" type="org.zwhy.swag.blog.po.Blog">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
@@ -15,177 +15,100 @@
     <result column="recommend" jdbcType="BIT" property="recommend" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <association property="type"
+                 javaType="org.zwhy.swag.blog.po.Type"
+                 column="type_id"
+                 select="org.zwhy.swag.blog.mapper.TypeMapper.getType">
+    </association>
   </resultMap>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    *
-    from blog
-    where id = #{id,jdbcType=BIGINT}
+  <select id="getBlog" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from blog where id = #{id}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from blog
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="org.zwhy.swag.blog.po.Blog">
+  <select id="listBlog" resultType="org.zwhy.swag.blog.po.Blog">
+    select * from blog
+    <where>
+      <if test="title != null">
+        title like concat('%', #{title} ,'%')
+      </if>
+      <if test="recommend == 1">
+        and recommend = 1
+      </if>
+      <if test="type != null">
+        and type_id = #{type.id}
+      </if>
+    </where>
+    order by update_time desc;
+  </select>
+
+  <update id="deleteBlog" parameterType="java.lang.Long">
+    update blog set deleted = 1 where id = #{id}
+  </update>
+
+
+  <insert id="saveBlog" parameterType="org.zwhy.swag.blog.po.Blog">
     insert into blog (id, title, content, 
       first_picture, flag, views, 
       appreciation, share_statement, commentable, 
       published, recommend, create_time, 
       update_time, type_id, user_id
       )
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{firstPicture,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
-      #{appreciation,jdbcType=BIT}, #{shareStatement,jdbcType=BIT}, #{commentable,jdbcType=BIT}, 
-      #{published,jdbcType=BIT}, #{recommend,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{typeId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}
+    values (#{id}, #{title}, #{content},
+      #{firstPicture}, #{flag}, #{views},
+      #{appreciation}, #{shareStatement}, #{commentable},
+      #{published}, #{recommend}, #{createTime},
+      #{updateTime}, #{typeId}, #{userId}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.zwhy.swag.blog.po.Blog">
-    insert into blog
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="firstPicture != null">
-        first_picture,
-      </if>
-      <if test="flag != null">
-        flag,
-      </if>
-      <if test="views != null">
-        views,
-      </if>
-      <if test="appreciation != null">
-        appreciation,
-      </if>
-      <if test="shareStatement != null">
-        share_statement,
-      </if>
-      <if test="commentable != null">
-        commentable,
-      </if>
-      <if test="published != null">
-        published,
-      </if>
-      <if test="recommend != null">
-        recommend,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="firstPicture != null">
-        #{firstPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=VARCHAR},
-      </if>
-      <if test="views != null">
-        #{views,jdbcType=INTEGER},
-      </if>
-      <if test="appreciation != null">
-        #{appreciation,jdbcType=BIT},
-      </if>
-      <if test="shareStatement != null">
-        #{shareStatement,jdbcType=BIT},
-      </if>
-      <if test="commentable != null">
-        #{commentable,jdbcType=BIT},
-      </if>
-      <if test="published != null">
-        #{published,jdbcType=BIT},
-      </if>
-      <if test="recommend != null">
-        #{recommend,jdbcType=BIT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=BIGINT},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.zwhy.swag.blog.po.Blog">
+
+  <update id="updateBlog" parameterType="org.zwhy.swag.blog.po.Blog">
     update blog
     <set>
       <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
+        title = #{title},
       </if>
       <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
+        content = #{content},
       </if>
       <if test="firstPicture != null">
-        first_picture = #{firstPicture,jdbcType=VARCHAR},
+        first_picture = #{firstPicture},
       </if>
       <if test="flag != null">
-        flag = #{flag,jdbcType=VARCHAR},
+        flag = #{flag},
       </if>
       <if test="views != null">
-        views = #{views,jdbcType=INTEGER},
+        views = #{views},
       </if>
       <if test="appreciation != null">
-        appreciation = #{appreciation,jdbcType=BIT},
+        appreciation = #{appreciation},
       </if>
       <if test="shareStatement != null">
-        share_statement = #{shareStatement,jdbcType=BIT},
+        share_statement = #{shareStatement},
       </if>
       <if test="commentable != null">
-        commentable = #{commentable,jdbcType=BIT},
+        commentable = #{commentable},
       </if>
       <if test="published != null">
-        published = #{published,jdbcType=BIT},
+        published = #{published},
       </if>
       <if test="recommend != null">
-        recommend = #{recommend,jdbcType=BIT},
+        recommend = #{recommend},
       </if>
       <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime},
       </if>
       <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime},
       </if>
       <if test="typeId != null">
-        type_id = #{typeId,jdbcType=BIGINT},
+        type_id = #{typeId},
       </if>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
+        user_id = #{userId},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.zwhy.swag.blog.po.Blog">
     update blog

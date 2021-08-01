@@ -76,8 +76,8 @@
 					<tfoot>
 						<th colspan="6">
 							<div class="ui mini pagination menu">
-								<a th:href="@{/admin/tags(start=${page.pageNum-1})}" class="item">上一页</a>
-								<a th:href="@{/admin/tags(start=${page.pageNum+1})}" class="item">下一页</a>
+								<a th:href="@{/admin/tags(start=${page.pageNum-1})}" class="item" th:unless="${page.pageNum <= 1}">上一页</a>
+								<a th:href="@{/admin/tags(start=${page.pageNum+1})}" class="item" th:unless="${page.pageNum >= page.pages}">下一页</a>
 							</div>
 							<a href="#" th:href="@{/admin/tag/input}" class="ui right floated mini teal teal button">新增</a>
 						</th>
