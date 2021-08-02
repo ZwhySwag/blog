@@ -18,4 +18,6 @@ public interface BlogDao {
     boolean updateBlog(Long id, Blog blog);
 
     boolean deleteBlog(Long id);
+
+    Blog getBlogByTitle(String title);
 }

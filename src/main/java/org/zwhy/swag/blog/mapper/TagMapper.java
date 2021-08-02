@@ -26,5 +26,7 @@ public interface TagMapper {
     Long getTotalRecordCount();
 
     List<Tag> getAllTag();
+
+    List<Tag> listTagByIds(List<Long> idList);
 }
 

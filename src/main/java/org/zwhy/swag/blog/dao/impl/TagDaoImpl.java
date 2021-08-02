@@ -54,4 +54,14 @@ public class TagDaoImpl implements TagDao {
     public Tag getTagByName(String name) {
         return tagMapper.getTagByName(name);
     }
+
+    @Override
+    public List<Tag> listAllTag() {
+        return tagMapper.getAllTag();
+    }
+
+    @Override
+    public List<Tag> listTagByIds(List<Long> idList) {
+        return tagMapper.listTagByIds(idList);
+    }
 }

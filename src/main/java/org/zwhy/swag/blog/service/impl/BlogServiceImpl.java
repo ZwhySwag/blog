@@ -7,6 +7,7 @@ import org.zwhy.swag.blog.dao.BlogDao;
 import org.zwhy.swag.blog.po.Blog;
 import org.zwhy.swag.blog.service.BlogService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +19,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogDao blogDao;
+
+    @Override
+    public Blog getBlogByTitle(String title) {
+        return blogDao.getBlogByTitle(title);
+    }
 
     @Override
     public Blog getBlog(Long id) {
@@ -32,6 +38,10 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public boolean saveBlog(Blog blog) {
+        Date date = new Date();
+        blog.setCreateTime(date);
+        blog.setUpdateTime(date);
+        blog.setViews(0);
         return blogDao.saveBlog(blog);
     }
 

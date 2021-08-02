@@ -59,4 +59,9 @@ public class BlogDaoImpl implements BlogDao {
     public boolean deleteBlog(Long id) {
         return blogMapper.deleteBlog(id) == 1? true : false;
     }
+
+    @Override
+    public Blog getBlogByTitle(String title) {
+        return blogMapper.getBlogByTitle(title);
+    }
 }

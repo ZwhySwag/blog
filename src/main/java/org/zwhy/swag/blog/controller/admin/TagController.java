@@ -85,8 +85,8 @@ public class TagController {
         if (bindingResult.hasErrors()) {
             return "admin/tag-input";
         }
-        attributes.addFlashAttribute("message", "修改成功");
         tagService.updateTag(id, tag);
+        attributes.addFlashAttribute("message", "修改成功");
         return "redirect:/admin/tags";
     }
 

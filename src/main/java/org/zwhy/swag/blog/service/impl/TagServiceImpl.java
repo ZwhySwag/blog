@@ -8,6 +8,10 @@ import org.zwhy.swag.blog.dao.TagDao;
 import org.zwhy.swag.blog.po.Tag;
 import org.zwhy.swag.blog.service.TagService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * @author ZWHySwag
@@ -37,6 +41,20 @@ public class TagServiceImpl implements TagService {
         return tagDao.listTag(page, pageSize);
     }
 
+    @Override
+    public List<Tag> listTag(String ids) {
+        List<Long> idList = new ArrayList<>();
+        if (ids != null && !"".equals(ids.trim())) {
+            Arrays.stream(ids.split(",")).forEach(id -> {
+                idList.add(Long.valueOf(id));
+            });
+        }
+        if (idList.size() > 0) {
+            return tagDao.listTagByIds(idList);
+        }
+        return new ArrayList<Tag>();
+    }
+
     @Transactional
     @Override
     public Boolean updateTag(Long id, Tag tag) {
@@ -54,5 +72,10 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag getTagByName(String name) {
         return tagDao.getTagByName(name);
+    }
+
+    @Override
+    public List<Tag> listAllTag() {
+        return tagDao.listAllTag();
     }
 }

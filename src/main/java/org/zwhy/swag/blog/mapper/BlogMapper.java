@@ -19,4 +19,6 @@ public interface BlogMapper {
     int updateBlog(Long id, Blog blog);
 
     int deleteBlog(Long id);
+
+    Blog getBlogByTitle(String title);
 }

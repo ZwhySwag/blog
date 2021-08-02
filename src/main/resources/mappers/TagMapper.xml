@@ -30,6 +30,12 @@
     select * from tag where deleted = 0 order by id desc
   </select>
 
+  <select id="listTagByIds" resultType="org.zwhy.swag.blog.po.Tag">
+    select * from tag where id in
+    <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+    and deleted = 0
+  </select>
+
   <update id="updateTag" parameterType="org.zwhy.swag.blog.po.Tag">
     update tag set name = #{tag.name} where id = #{id} and deleted = 0
   </update>
@@ -44,6 +50,7 @@
     from tag
     where id = #{id,jdbcType=BIGINT}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tag
     where id = #{id,jdbcType=BIGINT}

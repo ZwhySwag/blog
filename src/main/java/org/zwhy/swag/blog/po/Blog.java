@@ -41,7 +41,11 @@ public class Blog {
 
     private User user;
 
+    private List<Comment> comments;
+
     private Long typeId;
+
+    private String tagIds;
 
     public Long getTypeId() {
         return typeId;
@@ -51,7 +55,13 @@ public class Blog {
         this.typeId = typeId;
     }
 
-    private List<Comment> comments;
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
 
     public List<Comment> getComments() {
         return comments;

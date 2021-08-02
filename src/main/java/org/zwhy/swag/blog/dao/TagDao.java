@@ -3,6 +3,8 @@ package org.zwhy.swag.blog.dao;
 import com.github.pagehelper.PageInfo;
 import org.zwhy.swag.blog.po.Tag;
 
+import java.util.List;
+
 
 /**
  * @author ZWHySwag
@@ -20,4 +22,9 @@ public interface TagDao {
     Integer deleteTag(Long id);
 
     Tag getTagByName(String name);
+
+    List<Tag> listAllTag();
+
+    List<Tag> listTagByIds(List<Long> idList);
 }
+

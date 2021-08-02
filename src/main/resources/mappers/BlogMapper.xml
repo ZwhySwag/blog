@@ -23,14 +23,15 @@
   </resultMap>
 
   <select id="getBlog" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select * from blog where id = #{id}
+    select * from blog where id = #{id} and deleted = 0
   </select>
 
-  <select id="listBlog" resultType="org.zwhy.swag.blog.po.Blog">
+  <select id="listBlog" resultMap="BaseResultMap">
     select * from blog
     <where>
+      deleted = 0
       <if test="title != null">
-        title like concat('%', #{title} ,'%')
+       and title like concat('%', #{title} ,'%')
       </if>
       <if test="recommend == 1">
         and recommend = 1
@@ -39,7 +40,11 @@
         and type_id = #{type.id}
       </if>
     </where>
-    order by update_time desc;
+    order by update_time desc
+  </select>
+
+  <select id="getBlogByTitle" resultMap="BaseResultMap">
+    select * from blog where title = #{title} and deleted = 0
   </select>
 
   <update id="deleteBlog" parameterType="java.lang.Long">
@@ -58,7 +63,7 @@
       #{firstPicture}, #{flag}, #{views},
       #{appreciation}, #{shareStatement}, #{commentable},
       #{published}, #{recommend}, #{createTime},
-      #{updateTime}, #{typeId}, #{userId}
+      #{updateTime}, #{type.id}, #{user.id}
       )
   </insert>
 
@@ -108,7 +113,7 @@
         user_id = #{userId},
       </if>
     </set>
-    where id = #{id}
+    where id = #{id} and deleted = 0
   </update>
   <update id="updateByPrimaryKey" parameterType="org.zwhy.swag.blog.po.Blog">
     update blog

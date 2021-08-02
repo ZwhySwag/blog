@@ -9,6 +9,8 @@ import org.zwhy.swag.blog.po.Blog;
  */
 public interface BlogService {
 
+    Blog getBlogByTitle(String title);
+
     Blog getBlog(Long id);
 
     PageInfo<Blog> listBlog(Blog blog, Integer page, Integer pageSize);
