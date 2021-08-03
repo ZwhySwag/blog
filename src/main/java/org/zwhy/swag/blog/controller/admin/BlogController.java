@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zwhy.swag.blog.po.Blog;
 import org.zwhy.swag.blog.po.Tag;
@@ -78,6 +75,16 @@ public class BlogController {
         return "admin/publish";
     }
 
+    @GetMapping("/blog/delete/{id}")
+    public String publish(@PathVariable Long id,
+                          RedirectAttributes attributes) {
+        boolean result = blogService.deleteBlog(id);
+        if (result) {
+            attributes.addFlashAttribute("message", "删除成功");
+        }
+        return "redirect:/admin/blogs";
+    }
+
     @PostMapping("/blog/post")
     public String post(Blog blog,
                        HttpSession session,
@@ -89,7 +96,6 @@ public class BlogController {
         }
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getTypeId()));
-        System.out.println(blog.getTagIds());
         blog.setTags(tagService.listTag(blog.getTagIds()));
         boolean success = blogService.saveBlog(blog);
         if (success) {
