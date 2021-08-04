@@ -29,4 +29,21 @@ public class BlogTagDaoImpl implements BlogTagDao {
         }
         blogTagMapper.saveBlogTagRelation(id, idList);
     }
+
+    @Override
+    public List<Long> getTagIdsByBlogId(Long id) {
+        return blogTagMapper.getTagIdsByBlogId(id);
+    }
+
+    @Override
+    public void updateRelation(Long id, String tagIds) {
+        blogTagMapper.deleteRelationByBlogId(id);
+        if (tagIds != null && !"".equals(tagIds.trim())) {
+            List<Long> idList = new ArrayList<>();
+            Arrays.stream(tagIds.split(",")).forEach(tagId -> {
+                idList.add(Long.valueOf(tagId));
+            });
+            blogTagMapper.saveBlogTagRelation(id, idList);
+        }
+    }
 }

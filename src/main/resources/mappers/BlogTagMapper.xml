@@ -9,4 +9,12 @@
       (#{id}, #{tagId})
     </foreach>
   </insert>
+
+  <delete id="deleteRelationByBlogId">
+    delete from blog_tag_relation where blog_id = #{id}
+  </delete>
+
+  <select id="getTagIdsByBlogId" resultType="java.lang.Long">
+    select tag_id from blog_tag_relation where blog_id =#{id}
+  </select>
 </mapper>

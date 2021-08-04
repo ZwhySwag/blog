@@ -15,7 +15,7 @@ public interface BlogDao {
 
     boolean saveBlog(Blog blog);
 
-    boolean updateBlog(Long id, Blog blog);
+    boolean updateBlog(Blog blog);
 
     boolean deleteBlog(Long id);
 

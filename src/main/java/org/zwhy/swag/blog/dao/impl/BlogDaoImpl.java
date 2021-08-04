@@ -43,13 +43,13 @@ public class BlogDaoImpl implements BlogDao {
     }
 
     @Override
-    public boolean updateBlog(Long id, Blog blog) {
-        Blog existBlog = getBlog(id);
+    public boolean updateBlog(Blog blog) {
+        Blog existBlog = getBlog(blog.getId());
         if(existBlog == null) {
             throw new NotFoundException("该博客记录不存在");
         }
         BeanUtils.copyProperties(blog, existBlog);
-        int row = blogMapper.updateBlog(id, existBlog);
+        int row = blogMapper.updateBlog(existBlog);
         return row == 1? true : false;
     }
 

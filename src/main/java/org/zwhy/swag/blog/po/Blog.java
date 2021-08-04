@@ -203,6 +203,23 @@ public class Blog {
     }
 
 
+    public void init() {
+        if (!tags.isEmpty()) {
+            StringBuffer sb = new StringBuffer();
+            boolean flag = false;
+            for (Tag tag: tags) {
+                if (flag) {
+                    sb.append(",");
+                } else {
+                    flag =true;
+                }
+                sb.append(tag.getId());
+            }
+            this.tagIds = sb.toString();
+        }
+        this.typeId = this.type.getId();
+    }
+
     @Override
     public String toString() {
         return "Blog{" +

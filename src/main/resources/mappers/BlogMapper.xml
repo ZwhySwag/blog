@@ -20,6 +20,11 @@
                  column="type_id"
                  select="org.zwhy.swag.blog.mapper.TypeMapper.getType">
     </association>
+    <association property="user"
+                 javaType="org.zwhy.swag.blog.po.User"
+                 column="user_id"
+                 select="org.zwhy.swag.blog.mapper.UserMapper.getUser">
+    </association>
   </resultMap>
 
   <select id="getBlog" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -88,32 +93,57 @@
       <if test="views != null">
         views = #{views},
       </if>
-      <if test="appreciation != null">
-        appreciation = #{appreciation},
-      </if>
-      <if test="shareStatement != null">
-        share_statement = #{shareStatement},
-      </if>
-      <if test="commentable != null">
-        commentable = #{commentable},
-      </if>
-      <if test="published != null">
-        published = #{published},
-      </if>
-      <if test="recommend != null">
-        recommend = #{recommend},
-      </if>
+      <choose>
+        <when test="appreciation != null">
+          appreciation = #{appreciation},
+        </when>
+        <otherwise>
+          appreciation = 0,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="shareStatement != null">
+          share_statement = #{shareStatement},
+        </when>
+        <otherwise>
+          share_statement = 0,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="commentable != null">
+          commentable = #{commentable},
+        </when>
+        <otherwise>
+          commentable = 0,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="published != null">
+          published = #{published},
+        </when>
+        <otherwise>
+          published = 0,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="recommend != null">
+          recommend = #{recommend},
+        </when>
+        <otherwise>
+          recommend = 0,
+        </otherwise>
+      </choose>
       <if test="createTime != null">
         create_time = #{createTime},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime},
       </if>
-      <if test="typeId != null">
-        type_id = #{typeId},
+      <if test="type != null">
+        type_id = #{type.id},
       </if>
-      <if test="userId != null">
-        user_id = #{userId},
+      <if test="user != null">
+        user_id = #{user.id},
       </if>
     </set>
     where id = #{id} and deleted = 0

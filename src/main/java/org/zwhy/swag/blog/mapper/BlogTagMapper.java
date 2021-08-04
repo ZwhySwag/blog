@@ -11,4 +11,8 @@ import java.util.List;
 public interface BlogTagMapper {
 
     void saveBlogTagRelation(@Param("id") Long id, @Param("list") List<Long> idList);
+
+    List<Long> getTagIdsByBlogId(Long id);
+
+    void deleteRelationByBlogId(Long id);
 }

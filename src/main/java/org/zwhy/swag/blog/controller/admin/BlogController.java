@@ -67,13 +67,41 @@ public class BlogController {
     @GetMapping("/blog/input")
     public String publish(Model model) {
         Blog blog = new Blog();
-        model.addAttribute("Blog", blog);
+        Type type = new Type();
+        blog.setType(type);
+        model.addAttribute("blog", blog);
         List<Type> types = typeService.listAllType();
         List<Tag> tags = tagService.listAllTag();
         model.addAttribute("types", types);
         model.addAttribute("tags", tags);
         return "admin/publish";
     }
+
+    @GetMapping("/blog/edit/{id}")
+    public String edit(@PathVariable("id") Long id,
+                       Model model) {
+        model.addAttribute("types",  typeService.listAllType());
+        model.addAttribute("tags", tagService.listAllTag());
+        Blog blog = blogService.getBlog(id);
+        blog.init();
+        model.addAttribute("blog", blog);
+        return "admin/publish";
+    }
+
+    @PostMapping("/blog/update")
+    public String update(Blog blog,
+                         HttpSession session,
+                         RedirectAttributes attributes) {
+        boolean success = blogService.updateBlog(blog);
+        if (success) {
+            attributes.addFlashAttribute("message", "更新成功");
+        } else {
+            attributes.addFlashAttribute("message", "更新失败");
+        }
+        return "redirect:/admin/blogs";
+    }
+
+
 
     @GetMapping("/blog/delete/{id}")
     public String publish(@PathVariable Long id,

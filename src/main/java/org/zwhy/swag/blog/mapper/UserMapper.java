@@ -8,4 +8,6 @@ import org.zwhy.swag.blog.po.User;
  */
 public interface UserMapper {
     User findByUsernameAndPassword(String username, String password);
+
+    User getUser(Long id);
 }

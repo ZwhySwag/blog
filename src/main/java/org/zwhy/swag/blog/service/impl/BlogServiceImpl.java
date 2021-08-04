@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zwhy.swag.blog.dao.BlogDao;
 import org.zwhy.swag.blog.dao.BlogTagDao;
+import org.zwhy.swag.blog.dao.TagDao;
 import org.zwhy.swag.blog.po.Blog;
 import org.zwhy.swag.blog.po.Tag;
 import org.zwhy.swag.blog.service.BlogService;
@@ -26,6 +27,9 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogTagDao blogTagDao;
 
+    @Autowired
+    private TagDao tagDao;
+
     @Override
     public Blog getBlogByTitle(String title) {
         return blogDao.getBlogByTitle(title);
@@ -33,7 +37,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getBlog(Long id) {
-        return blogDao.getBlog(id);
+        Blog blog = blogDao.getBlog(id);
+        List<Long> tagIds = blogTagDao.getTagIdsByBlogId(id);
+        List<Tag> tags = tagDao.listTagByIds(tagIds);
+        blog.setTags(tags);
+        return blog;
     }
 
     @Override
@@ -49,6 +57,7 @@ public class BlogServiceImpl implements BlogService {
         blog.setCreateTime(date);
         blog.setUpdateTime(date);
         blog.setViews(0);
+        initBooleanValue(blog);
         boolean success = blogDao.saveBlog(blog);
         if (!success) {
             return false;
@@ -59,10 +68,30 @@ public class BlogServiceImpl implements BlogService {
         return true;
     }
 
+    private void initBooleanValue(Blog blog) {
+        if (blog.getAppreciation() == null) {
+            blog.setAppreciation(false);
+        }
+        if (blog.getCommentable() == null) {
+            blog.setCommentable(false);
+        }
+        if (blog.getPublished() == null) {
+            blog.setPublished(false);
+        }
+        if (blog.getRecommend() == null) {
+            blog.setRecommend(false);
+        }
+        if (blog.getShareStatement() == null) {
+            blog.setRecommend(false);
+        }
+    }
+
     @Transactional
     @Override
-    public boolean updateBlog(Long id, Blog blog) {
-        return blogDao.updateBlog(id, blog);
+    public boolean updateBlog(Blog blog) {
+        boolean result = blogDao.updateBlog(blog);
+        blogTagDao.updateRelation(blog.getId(), blog.getTagIds());
+        return result;
     }
 
     @Transactional

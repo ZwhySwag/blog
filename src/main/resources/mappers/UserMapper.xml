@@ -16,4 +16,7 @@
   <select id="findByUsernameAndPassword" resultMap="BaseResultMap">
     select * from user where username = #{username} and password = #{password}
   </select>
+    <select id="getUser" resultType="org.zwhy.swag.blog.po.User">
+      select * from user where id = #{id}
+    </select>
 </mapper>
