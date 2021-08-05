@@ -110,14 +110,16 @@
 						</tr>
 						</tbody>
 						<tfoot>
-						<th colspan="6">
-							<div class="ui mini pagination menu" th:if="${page.pages}>1">
-								<!--此处page()方法是为了解决点击上下页服务传递条件查询的信息的问题-->
-								<a onclick="page(this)" th:attr="data-page=${page.pageNum-1}" class="item" th:unless="${page.pageNum <= 1}">上一页</a>
-								<a onclick="page(this)" th:attr="data-page=${page.pageNum+1}" class="item" th:unless="${page.pageNum >= page.pages}">下一页</a>
-							</div>
-							<a href="#" th:href="@{/admin/blog/input}" class="ui right floated mini teal teal button">新增</a>
-						</th>
+							<tr>
+								<th colspan="7">
+									<div class="ui mini pagination menu" th:if="${page.pages}>1">
+										<!--此处page()方法是为了解决点击上下页服务传递条件查询的信息的问题-->
+										<a onclick="page(this)" th:attr="data-page=${page.pageNum-1}" class="item" th:unless="${page.pageNum <= 1}">上一页</a>
+										<a onclick="page(this)" th:attr="data-page=${page.pageNum+1}" class="item" th:unless="${page.pageNum >= page.pages}">下一页</a>
+									</div>
+									<a href="#" th:href="@{/admin/blog/input}" class="ui right floated mini teal teal button">新增</a>
+								</th>
+							</tr>
 						</tfoot>
 					</table>
 					<div class="ui success message" th:unless="${#strings.isEmpty(message)}">

@@ -15,6 +15,8 @@ public class Blog {
 
     private String title;
 
+    private String description;
+
     private String content;
 
     private String firstPicture;
@@ -35,7 +37,6 @@ public class Blog {
 
     private Date createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
 
     private Type type;
@@ -49,6 +50,14 @@ public class Blog {
     private Long typeId;
 
     private String tagIds;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getTypeId() {
         return typeId;
@@ -225,6 +234,7 @@ public class Blog {
         return "Blog{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", firstPicture='" + firstPicture + '\'' +
                 ", flag='" + flag + '\'' +

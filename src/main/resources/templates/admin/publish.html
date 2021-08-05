@@ -122,6 +122,9 @@
 							<input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="博客首图引用地址"/>
 						</div>
 					</div>
+					<div class="required field">
+						<textarea name="description" placeholder="请输入博客的概述..." th:text="*{description}" maxlength="200"></textarea>
+					</div>
 					<div class="inline fields">
 						<div class="field">
 							<div class="ui checkbox">
@@ -252,6 +255,13 @@
 							rules: [{
 								type: 'empty',
 								prompt: '请选择博客首图地址...'
+							}]
+						},
+						description : {
+							identifier: 'description',
+							rules: [{
+								type: 'empty',
+								prompt: '请选择博客博客概述...'
 							}]
 						}
 					}
