@@ -65,6 +65,10 @@
     limit #{size}
   </select>
 
+  <select id="listBlogByContent" resultMap="BaseResultMap">
+    select * from blog where title like concat('%', #{query},'%') or content like concat('%', #{query},'%') and deleted = 0
+  </select>
+
   <update id="deleteBlog" parameterType="java.lang.Long">
     update blog set deleted = 1 where id = #{id}
   </update>

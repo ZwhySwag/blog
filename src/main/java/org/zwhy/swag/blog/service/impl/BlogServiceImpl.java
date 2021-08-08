@@ -109,4 +109,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> getRecommendBlogs(Integer size) {
         return blogDao.getRecommendBlogs(size);
     }
+
+    @Override
+    public PageInfo<Blog> listBlogByContent(String query, Integer start, Integer size) {
+        return blogDao.listBlogByContent(query, start, size);
+    }
 }

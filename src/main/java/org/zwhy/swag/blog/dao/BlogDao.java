@@ -26,4 +26,6 @@ public interface BlogDao {
     PageInfo<Blog> listBlog(Integer start, Integer size);
 
     List<Blog> getRecommendBlogs(Integer size);
+
+    PageInfo<Blog> listBlogByContent(String query, Integer start, Integer size);
 }

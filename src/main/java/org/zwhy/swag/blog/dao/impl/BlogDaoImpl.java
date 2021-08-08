@@ -82,4 +82,13 @@ public class BlogDaoImpl implements BlogDao {
     public List<Blog> getRecommendBlogs(Integer size) {
         return blogMapper.getRecommendBlogs(size);
     }
+
+    @Override
+    public PageInfo<Blog> listBlogByContent(String query, Integer start, Integer size) {
+        PageHelper.startPage(start, size);
+        //查询语句必须紧跟startPage方法
+        List<Blog> blogs = blogMapper.listBlogByContent(query);
+        PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
+        return pageInfo;
+    }
 }

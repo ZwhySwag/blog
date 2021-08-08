@@ -28,5 +28,7 @@ public interface BlogMapper {
     List<Blog> getBlogsByTypeId(Long typeId);
 
     List<Blog> getRecommendBlogs(Integer size);
+
+    List<Blog> listBlogByContent(String query);
 }
 
