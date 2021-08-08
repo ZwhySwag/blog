@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import org.zwhy.swag.blog.po.Tag;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ZWHySwag
@@ -26,4 +27,6 @@ public interface TagService {
     Tag getTagByName(String name);
 
     List<Tag> listAllTag();
+
+    List<Map> getFixedList(Integer size);
 }

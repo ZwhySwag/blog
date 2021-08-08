@@ -44,6 +44,16 @@
     update tag set deleted = 1 where id = #{id} and deleted = 0
   </update>
 
+  <select id="getFixedList" resultType="java.util.Map">
+    select t.id, t.name, tc.total
+    from
+    (select tag_id, count(1) as total from blog_tag_relation
+    group by tag_id
+    order by total desc) tc left join tag t
+    on tc.tag_id = t.id
+    limit #{size}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     *

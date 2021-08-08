@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import org.zwhy.swag.blog.po.Tag;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -26,5 +27,7 @@ public interface TagDao {
     List<Tag> listAllTag();
 
     List<Tag> listTagByIds(List<Long> idList);
+
+    List<Map> getFixedList(Integer size);
 }
 

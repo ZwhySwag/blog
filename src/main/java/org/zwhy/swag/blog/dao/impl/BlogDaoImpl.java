@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.zwhy.swag.blog.dao.BlogDao;
 import org.zwhy.swag.blog.expections.NotFoundException;
 import org.zwhy.swag.blog.mapper.BlogMapper;
+import org.zwhy.swag.blog.mapper.BlogTagMapper;
 import org.zwhy.swag.blog.po.Blog;
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class BlogDaoImpl implements BlogDao {
 
     @Autowired
     private BlogMapper blogMapper;
+
+    @Autowired
+    private BlogTagMapper blogTagMapper;
 
     @Override
     public Blog getBlog(Long id) {
@@ -55,11 +59,27 @@ public class BlogDaoImpl implements BlogDao {
 
     @Override
     public boolean deleteBlog(Long id) {
-        return blogMapper.deleteBlog(id) == 1? true : false;
+        boolean result = blogMapper.deleteBlog(id) == 1? true : false;
+        blogTagMapper.deleteRelationByBlogId(id);
+        return result;
     }
 
     @Override
     public Blog getBlogByTitle(String title) {
         return blogMapper.getBlogByTitle(title);
+    }
+
+    @Override
+    public PageInfo<Blog> listBlog(Integer start, Integer size) {
+        PageHelper.startPage(start, size);
+        //查询语句必须紧跟startPage方法
+        List<Blog> blogs = blogMapper.listBlogWithoutCondition();
+        PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
+        return pageInfo;
+    }
+
+    @Override
+    public List<Blog> getRecommendBlogs(Integer size) {
+        return blogMapper.getRecommendBlogs(size);
     }
 }

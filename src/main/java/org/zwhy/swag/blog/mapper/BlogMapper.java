@@ -1,6 +1,7 @@
 package org.zwhy.swag.blog.mapper;
 
 
+import com.github.pagehelper.PageInfo;
 import org.zwhy.swag.blog.po.Blog;
 import java.util.List;
 
@@ -21,4 +22,11 @@ public interface BlogMapper {
     int deleteBlog(Long id);
 
     Blog getBlogByTitle(String title);
+
+    List<Blog> listBlogWithoutCondition();
+
+    List<Blog> getBlogsByTypeId(Long typeId);
+
+    List<Blog> getRecommendBlogs(Integer size);
 }
+

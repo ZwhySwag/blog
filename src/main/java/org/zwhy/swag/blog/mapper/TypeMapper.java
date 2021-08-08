@@ -26,5 +26,7 @@ public interface TypeMapper {
     Long getTotalRecordCount();
 
     List<Type> getAllType();
+
+    List<Type> getFixedList(Integer size);
 }
 

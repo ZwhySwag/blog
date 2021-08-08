@@ -8,7 +8,9 @@ import org.zwhy.swag.blog.dao.TypeDao;
 import org.zwhy.swag.blog.po.Type;
 import org.zwhy.swag.blog.service.TypeService;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author ZWHySwag
@@ -60,5 +62,14 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> listAllType() {
         return typeDao.listAllType();
+    }
+
+    @Override
+    public List<Type> getFixedList(Integer size) {
+        List<Type> types = typeDao.getFixedList(size);
+        if (types.size() > 1) {
+            types = types.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        }
+        return types;
     }
 }

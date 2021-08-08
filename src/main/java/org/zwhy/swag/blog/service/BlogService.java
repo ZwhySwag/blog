@@ -3,6 +3,8 @@ package org.zwhy.swag.blog.service;
 import com.github.pagehelper.PageInfo;
 import org.zwhy.swag.blog.po.Blog;
 
+import java.util.List;
+
 /**
  * @author ZWHySwag
  * @date 2021\8\1 0001 15:59
@@ -20,4 +22,8 @@ public interface BlogService {
     boolean updateBlog(Blog blog);
 
     boolean deleteBlog(Long id);
+
+    PageInfo<Blog> listBlog(Integer start, Integer size);
+
+    List<Blog> getRecommendBlogs(Integer size);
 }

@@ -3,6 +3,7 @@ package org.zwhy.swag.blog.mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ZWHySwag
@@ -15,4 +16,8 @@ public interface BlogTagMapper {
     List<Long> getTagIdsByBlogId(Long id);
 
     void deleteRelationByBlogId(Long id);
+
+    void deleteRelationByTagId(Long id);
+
+    List<Long> getFixedTagIds(Integer size);
 }

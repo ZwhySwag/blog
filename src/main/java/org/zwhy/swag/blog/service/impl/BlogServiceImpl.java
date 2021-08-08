@@ -82,7 +82,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setRecommend(false);
         }
         if (blog.getShareStatement() == null) {
-            blog.setRecommend(false);
+            blog.setShareStatement(false);
         }
     }
 
@@ -98,5 +98,15 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public boolean deleteBlog(Long id) {
         return blogDao.deleteBlog(id);
+    }
+
+    @Override
+    public PageInfo<Blog> listBlog(Integer start, Integer size) {
+        return blogDao.listBlog(start, size);
+    }
+
+    @Override
+    public List<Blog> getRecommendBlogs(Integer size) {
+        return blogDao.getRecommendBlogs(size);
     }
 }

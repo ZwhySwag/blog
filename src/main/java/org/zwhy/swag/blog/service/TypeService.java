@@ -24,4 +24,6 @@ public interface TypeService {
     Type getTypeByName(String name);
 
     List<Type> listAllType();
+
+    List<Type> getFixedList(Integer size);
 }

@@ -59,4 +59,9 @@ public class TypeDaoImpl implements TypeDao {
     public List<Type> listAllType() {
         return typeMapper.getAllType();
     }
+
+    @Override
+    public List<Type> getFixedList(Integer size) {
+        return typeMapper.getFixedList(size);
+    }
 }

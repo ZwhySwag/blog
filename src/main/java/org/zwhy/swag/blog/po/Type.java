@@ -8,7 +8,7 @@ import java.util.List;
  * @author ZWHySwag
  * @date 2021\7\28 0028 21:04
  */
-public class Type {
+public class Type implements Comparable<Type> {
 
     private Long id;
 
@@ -47,5 +47,10 @@ public class Type {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Type o) {
+        return ((Integer) blogs.size()).compareTo(o.getBlogs().size());
     }
 }

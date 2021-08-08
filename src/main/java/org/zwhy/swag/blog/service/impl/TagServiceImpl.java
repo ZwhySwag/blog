@@ -11,6 +11,7 @@ import org.zwhy.swag.blog.service.TagService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -77,5 +78,10 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> listAllTag() {
         return tagDao.listAllTag();
+    }
+
+    @Override
+    public List<Map> getFixedList(Integer size) {
+        return tagDao.getFixedList(size);
     }
 }

@@ -5,10 +5,14 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.zwhy.swag.blog.dao.TagDao;
+import org.zwhy.swag.blog.mapper.BlogTagMapper;
 import org.zwhy.swag.blog.mapper.TagMapper;
+import org.zwhy.swag.blog.po.Blog;
 import org.zwhy.swag.blog.po.Tag;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author ZWHySwag
@@ -19,6 +23,9 @@ public class TagDaoImpl implements TagDao {
 
     @Autowired
     private TagMapper tagMapper;
+
+    @Autowired
+    private BlogTagMapper blogTagMapper;
 
 
     @Override
@@ -47,7 +54,9 @@ public class TagDaoImpl implements TagDao {
 
     @Override
     public Integer deleteTag(Long id) {
-        return tagMapper.deleteTag(id);
+        Integer result = tagMapper.deleteTag(id);
+        blogTagMapper.deleteRelationByTagId(id);
+        return result;
     }
 
     @Override
@@ -63,5 +72,10 @@ public class TagDaoImpl implements TagDao {
     @Override
     public List<Tag> listTagByIds(List<Long> idList) {
         return tagMapper.listTagByIds(idList);
+    }
+
+    @Override
+    public List<Map> getFixedList(Integer size) {
+        return tagMapper.getFixedList(size);
     }
 }

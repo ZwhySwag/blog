@@ -52,6 +52,18 @@
   <select id="getBlogByTitle" resultMap="BaseResultMap">
     select * from blog where title = #{title} and deleted = 0
   </select>
+  <select id="listBlogWithoutCondition" resultMap="BaseResultMap">
+    select * from blog where deleted = 0 order by update_time desc
+  </select>
+
+  <select id="getBlogsByTypeId" resultMap="BaseResultMap">
+    select * from blog where type_id = #{typeId} and deleted = 0
+  </select>
+
+  <select id="getRecommendBlogs" resultMap="BaseResultMap">
+    select * from blog where recommend = 1 and deleted = 0
+    limit #{size}
+  </select>
 
   <update id="deleteBlog" parameterType="java.lang.Long">
     update blog set deleted = 1 where id = #{id}

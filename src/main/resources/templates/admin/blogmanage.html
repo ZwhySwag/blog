@@ -102,7 +102,7 @@
 							<td th:text="${blog.type.name}">情感</td>
 							<td th:text="${blog.published} ? '已发布' : '草稿'">草稿</td>
 							<td th:text="${blog.recommend} ? '是' : '否'">是</td>
-							<td th:text="${blog.updateTime}">2021-07-19 19:28:17</td>
+							<td th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm:ss')}">2021-07-19 19:28:17</td>
 							<td>
 								<a href="#" th:href="@{/admin/blog/edit/{id}(id=${blog.id})}" class="ui mini basic teal button">编辑</a>
 								<a href="#" th:href="@{/admin/blog/delete/{id}(id=${blog.id})}" class="ui mini basic red button">删除</a>

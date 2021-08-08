@@ -4,6 +4,11 @@
   <resultMap id="BaseResultMap" type="org.zwhy.swag.blog.po.Type">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <collection  property="blogs"
+                 ofType="org.zwhy.swag.blog.po.Blog"
+                 column="id"
+                 select="org.zwhy.swag.blog.mapper.BlogMapper.getBlogsByTypeId">
+    </collection>
   </resultMap>
 
   <insert id="saveType" parameterType="org.zwhy.swag.blog.po.Type">
@@ -28,6 +33,10 @@
 
   <select id="getAllType" resultType="org.zwhy.swag.blog.po.Type">
     select * from type where deleted = 0 order by id desc
+  </select>
+
+  <select id="getFixedList" resultMap="BaseResultMap">
+    select * from type where deleted = 0 limit #{size}
   </select>
 
   <update id="updateType" parameterType="org.zwhy.swag.blog.po.Type">
