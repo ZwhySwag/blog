@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.zwhy.swag.blog.dao.BlogDao;
 import org.zwhy.swag.blog.dao.BlogTagDao;
 import org.zwhy.swag.blog.dao.TagDao;
+import org.zwhy.swag.blog.expections.NotFoundException;
 import org.zwhy.swag.blog.po.Blog;
 import org.zwhy.swag.blog.po.Tag;
 import org.zwhy.swag.blog.service.BlogService;
+import org.zwhy.swag.blog.utils.MarkDownUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -41,6 +43,18 @@ public class BlogServiceImpl implements BlogService {
         List<Long> tagIds = blogTagDao.getTagIdsByBlogId(id);
         List<Tag> tags = tagDao.listTagByIds(tagIds);
         blog.setTags(tags);
+        return blog;
+    }
+
+    @Override
+    public Blog getAndConvertBlog(Long id) {
+        Blog blog = getBlog(id);
+        if (blog == null) {
+            throw new NotFoundException("blog mot exists...");
+        }
+        String content = blog.getContent();
+        String markdown = MarkDownUtils.markdownToHtmlExtensions(content);
+        blog.setContent(markdown);
         return blog;
     }
 

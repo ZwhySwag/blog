@@ -62,6 +62,7 @@
 
   <select id="getRecommendBlogs" resultMap="BaseResultMap">
     select * from blog where recommend = 1 and deleted = 0
+    order by update_time desc
     limit #{size}
   </select>
 

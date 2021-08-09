@@ -15,6 +15,8 @@ public interface BlogService {
 
     Blog getBlog(Long id);
 
+    Blog getAndConvertBlog(Long id);
+
     PageInfo<Blog> listBlog(Blog blog, Integer page, Integer pageSize);
 
     boolean saveBlog(Blog blog);

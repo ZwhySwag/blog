@@ -42,35 +42,35 @@
 				<div class="ui top attached segment">
 					<div class="ui horizontal link list">
 						<div class="item">
-							<img src="https://picsum.photos/id/1005/100/100" alt="" class="ui avatar image">
+							<img src="https://picsum.photos/id/1005/100/100" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
 							<div class="content">
-								<a href="#" class="header">
+								<a href="#" class="header" th:text="${blog.user.nickname}">
 									ZWhySwag
 								</a>
 							</div>
 						</div>
 						<div class="item">
-							<i class="calendar icon"></i>2021-07-15
+							<i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}"></span>
 						</div>
 						<div class="item">
-							<i class="eye icon"></i>1413
+							<i class="eye icon"></i><span th:text="${blog.views}"></span>
 						</div>
 					</div>
 				</div>
 				<!-- 图片区域 -->
 				<div class="ui attached segment">
-					<img src="https://picsum.photos/id/1000/1000/450" alt="" class="ui fluid rounded image">
+					<img src="https://picsum.photos/id/1000/1000/450" th:src="@{${blog.firstPicture}}" alt="" class="ui fluid rounded image">
 				</div>
 				<!-- 内容 -->
 				<div class="ui attached padded segment">
 					<div class="ui right aligned basic segment">
-						<div class="ui orange basic label">
+						<div class="ui orange basic label" th:text="${blog.flag}">
 							非原创
 						</div>
 					</div>
-					<h2 class="ui center aligned header">被忽略的爱</h2>
+					<h2 class="ui center aligned header" th:text="${blog.title}">被忽略的爱</h2>
 					<br />
-					<div id="article-content" class="typo typo-selection m-padded-lr-middle-responsive m-padded-tb-middle">
+					<div id="article-content" class="typo typo-selection m-padded-lr-middle-responsive m-padded-tb-middle" th:utext="${blog.content}">
 						<h3 id="section1">section1</h3>
 						<p>Once upon a time all feelings and emotions went to a coastal island for a vacation, and each was having a good time. Suddenly, a warning of an impending storm was announced and everyone was advised to evacuate the island.</p>
 						<p>The announcement caused sudden panic. All rushed to their boats. Even damaged boats were quickly repaired and commissioned for duty.</p>
@@ -96,7 +96,7 @@
 						<p>The important message is that when we are prosperous, we overlook love. When we feel important, we forget love. Even in happiness and sorrow we forget love. Only with time do we realize the importance of love. Why wait that long? Why not make love a part of your life today?</p>
 					</div>
 					<div class="m-padded-lr-middle-responsive m-padded-tb-middle">
-						<div class="ui basic teal left pointing label">
+						<div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">
 							情感
 						</div>
 					</div>
@@ -130,8 +130,8 @@
 					<div class="ui middle aligned grid">
 						<div class="eleven wide column">
 							<ul>
-								<li>作者: ZWhySwag（联系作者）</li>
-								<li>发表时间: 2021-07-18 16:50</li>
+								<li>作者: <span th:text="${blog.user.nickname}">ZWhySwag</span><a href="#" th:href="@{/aboutme}">（联系作者）</a></li>
+								<li>发表时间: <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm')}">2021-07-18 16:50</span></li>
 								<li>版权声明: 自由转载-非商用-非衍生-保留署名（创意共享3.0许可证）</li>
 								<li>公众号转载: 请在文末添加作者公众号二维码</li>
 							</ul>

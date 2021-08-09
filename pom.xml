@@ -62,6 +62,27 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.10</version>
 		</dependency>
+		<!--文本转markdown语法-->
+		<dependency>
+			<groupId>org.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>0.18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.commonmark</groupId>
+			<artifactId>commonmark-ext-gfm-tables</artifactId>
+			<version>0.18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.commonmark</groupId>
+			<artifactId>commonmark-ext-heading-anchor</artifactId>
+			<version>0.18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.commonmark</groupId>
+			<artifactId>commonmark-ext-autolink</artifactId>
+			<version>0.18.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
