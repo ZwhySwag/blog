@@ -17,3 +17,6 @@ logging:
   level:
     root: info
     com.zwhy.swag.blog: warn
+
+comment:
+  avatar: /images/unknow_user.jpg

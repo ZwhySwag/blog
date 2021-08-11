@@ -148,21 +148,22 @@
 						<div th:fragment="commentList">
 							<div class="ui threaded comments" style="max-width: 100%">
 								<h3 class="ui dividing header">评论</h3>
-								<div class="comment">
+								<div class="comment" th:each="comment : ${comments}">
 									<a class="avatar">
-										<img src="../static/images/unknow_user.jpg" th:src="@{/images/unknow_user.jpg}">
+										<img src="../static/images/unknow_user.jpg" th:src="@{${comment.avatar}}">
 									</a>
 									<div class="content">
-										<a class="author">Matt</a>
+										<a class="author" th:text="${comment.nickname}">Matt</a>
 										<div class="metadata">
-											<span class="date">今天 5:42PM</span>
+											<span class="date" th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd HH:mm')}">今天 5:42PM</span>
 										</div>
-										<div class="text">初音只是個軟體而已!! </div>
+										<div class="text" th:text="${comment.content}">初音只是個軟體而已!! </div>
 										<div class="actions">
-											<a class="reply" data-commentid="1" data-commentnickname="Matt" onclick="reply(this)">回复</a>
+											<a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}" onclick="reply(this)">回复</a>
 										</div>
 									</div>
 								</div>
+								<!--/*-->
 								<div class="comment">
 									<a class="avatar">
 										<img src="../static/images/aboutme.jpg" th:src="@{/images/aboutme.jpg}">
@@ -212,6 +213,7 @@
 										</div>
 									</div>
 								</div>
+								<!--*/-->
 							</div>
 						</div>
 					</div>
@@ -375,7 +377,7 @@
 				$("#comment-btn").click(function () {
 					var boo = $('.ui.form').form('validate form');
 					if (boo) {
-
+						postCommentData();
 					}
 				});
 
@@ -395,14 +397,14 @@
 				function clearComment() {
 					$("[name='content']").val("");
 					$("[name='parentId']").val(-1);
-					$("[name='content']").attr('placeholder', '@'+nickname).focus();
+					$("[name='content']").attr('placeholder', '请输入评论信息...');
 				}
 
 				<!--评论回复-->
 				function reply(obj) {
 					var parentId = $(obj).data('commentid');
 					var nickname = $(obj).data('commentnickname');
-					$("[name='content']").attr('placeholder', '请输入评论信息...');
+					$("[name='content']").attr('placeholder', '@'+nickname).focus();
 					$("[name='parentId']").val(parentId);
 					$(window).scrollTo($('#comment-form'), 500);
 				}
