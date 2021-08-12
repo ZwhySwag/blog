@@ -38,6 +38,10 @@
     select * from comment where id = #{id}
   </select>
 
+  <select id="listTopCommentByBlogId" resultMap="BaseResultMap">
+    select * from comment where blog_id = #{blogId} and parent_comment_id = -1 order by create_time desc
+  </select>
+
 
   <insert id="saveComment" parameterType="org.zwhy.swag.blog.po.Comment">
     insert into comment

@@ -17,4 +17,6 @@ public interface CommentDao {
     List<Comment> listReplyComment(Long parentId);
 
     Comment getComment(Long id);
+
+    List<Comment> listTopCommentByBlogId(Long blogId);
 }

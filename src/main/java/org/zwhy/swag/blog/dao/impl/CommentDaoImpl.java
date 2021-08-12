@@ -41,4 +41,9 @@ public class CommentDaoImpl implements CommentDao {
     public Comment getComment(Long id) {
         return commentMapper.getComment(id);
     }
+
+    @Override
+    public List<Comment> listTopCommentByBlogId(Long blogId) {
+        return commentMapper.listTopCommentByBlogId(blogId);
+    }
 }

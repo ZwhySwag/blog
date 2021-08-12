@@ -17,4 +17,6 @@ public interface CommentMapper {
     Integer saveComment(Comment comment);
 
     List<Comment> getReplyComments(Long parentId);
+
+    List<Comment> listTopCommentByBlogId(Long blogId);
 }

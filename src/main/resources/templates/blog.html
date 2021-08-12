@@ -162,6 +162,25 @@
 											<a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}" onclick="reply(this)">回复</a>
 										</div>
 									</div>
+									<div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+										<div class="comment" th:each="reply : ${comment.replyComments}">
+											<a class="avatar">
+												<img src="../static/images/unknow_user.jpg" th:src="@{${reply.avatar}}">
+											</a>
+											<div class="content">
+												<a class="author" >
+													<span th:text="${reply.nickname}">Matt</span><span th:text="| @${reply.parentComment.nickname}|" class="m-teal">@Matt</span>
+												</a>
+												<div class="metadata">
+													<span class="date" th:text="${#dates.format(reply.createTime, 'yyyy-MM-dd HH:mm')}">今天 5:42PM</span>
+												</div>
+												<div class="text" th:text="${reply.content}">初音只是個軟體而已!! </div>
+												<div class="actions">
+													<a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}" onclick="reply(this)">回复</a>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 								<!--/*-->
 								<div class="comment">
@@ -393,6 +412,10 @@
 						clearComment();
 					});
 				}
+
+				$(function() {
+					$("#comment-list").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"");
+				});
 
 				function clearComment() {
 					$("[name='content']").val("");

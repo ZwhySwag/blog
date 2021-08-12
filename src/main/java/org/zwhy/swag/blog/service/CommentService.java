@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface CommentService {
 
+    List<Comment> listTopCommentByBlogId(Long blogId);
+
     List<Comment> listCommentByBlogId(Long blogId);
 
     Boolean saveComment(Comment comment);

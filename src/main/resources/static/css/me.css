@@ -121,6 +121,10 @@ body {
 	color: #333 !important;
 }
 
+.m-teal {
+    color: #00B5AD !important;
+}
+
 /* 位置 */
 .m-top-right-location {
 	position: absolute !important;
